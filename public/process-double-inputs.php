@@ -1,22 +1,16 @@
 <?php
 //Define source of text input
-$patienthpos = "patient-hpo.txt";
-$genehpos = "gene-hpo.txt";
+$patienthpos = file_get_contents("patient-hpo.txt");
+$genehpos = file_get_contents("gene-hpo.txt");
 
 //Create both patient and gene HPO arrays
-$text = file_get_contents($patienthpos);
+$text = $patienthpos;
 $separator = " - ";
 include 'process-text.php';
 $patienthpos = $hpoarray;
 
-$text = file_get_contents($genehpos);
+$text = $genehpos;
 $separator = "\t";
 include 'process-text.php';
 $genehpos = $hpoarray;
-
-echo "Patient HPOs:<br>";
-print_r($patienthpos);
-echo "<br>";
-echo "Gene HPOs:<br>";
-print_r($genehpos);
 ?>
